@@ -18,4 +18,5 @@ public class PostRequestDto {
         this.password = post.getPassword();
         this.title = post.getTitle();
     }
+
 }

@@ -1,5 +1,6 @@
 package com.sparta.post.controller;
 
+import com.sparta.post.dto.PasswordDto;
 import com.sparta.post.dto.PostRequestDto;
 import com.sparta.post.dto.ResponsePostDto;
 import com.sparta.post.entity.Post;
@@ -45,7 +46,7 @@ public class PostController {
 
     //게시글 삭제
     @DeleteMapping("/api/posts/{id}")
-    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+    public String deletePost(@PathVariable Long id, @RequestBody PasswordDto requestDto) {
         return postService.deletePost(id, requestDto);
     }
 

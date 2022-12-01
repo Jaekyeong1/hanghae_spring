@@ -1,5 +1,6 @@
 package com.sparta.post.service;
 
+import com.sparta.post.dto.PasswordDto;
 import com.sparta.post.dto.PostRequestDto;
 import com.sparta.post.dto.ResponsePostDto;
 import com.sparta.post.entity.Post;
@@ -65,7 +66,7 @@ public class PostService {
 
     //삭제
     @Transactional
-    public String deletePost(Long id, PostRequestDto requestDto) {
+    public String deletePost(Long id, PasswordDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
