@@ -38,14 +38,14 @@ public class PostController {
 
     //게시글 수정
     @PutMapping("/api/posts/{id}")
-    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+    public ResponsePostDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.updatePost(id, requestDto);
     }
 
 
     //게시글 삭제
     @DeleteMapping("/api/posts/{id}")
-    public Long deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+    public String deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         return postService.deletePost(id, requestDto);
     }
 

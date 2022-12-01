@@ -50,26 +50,31 @@ public class PostService {
 
     //수정
     @Transactional
-    public Long updatePost(Long id, PostRequestDto requestDto) {
+    public ResponsePostDto updatePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         if (post.getPassword().equals(requestDto.getPassword())) {
             post.updatePost(requestDto);
-            return post.getId();
-        } else return 0L;
-    }
 
+        } else {
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
+        }
+        return new ResponsePostDto(post);
+    }
 
     //삭제
     @Transactional
-    public Long deletePost(Long id, PostRequestDto requestDto) {
+    public String deletePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         if (post.getPassword().equals(requestDto.getPassword())) {
             postRepository.deleteById(id);
-            return id;
-        } else return 0L;
+
+        } else {
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
+        }
+        return ("게시글 삭제 성공!");
     }
 }
