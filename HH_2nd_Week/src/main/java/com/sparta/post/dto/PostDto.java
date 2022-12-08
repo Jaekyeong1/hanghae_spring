@@ -1,21 +1,30 @@
 package com.sparta.post.dto;
 
 import com.sparta.post.entity.Post;
+import com.sparta.post.entity.Timestamped;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+
 @Getter
 @NoArgsConstructor
-public class PostDto{
-
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+public class PostDto {
     private Long id;
+
     private String title;
+
     private String username;
     private String contents;
-    private LocalDateTime createdAt;
+
     private LocalDateTime modifiedAt;
+
+    private LocalDateTime createdAt;
 
 
     public PostDto(Post post){

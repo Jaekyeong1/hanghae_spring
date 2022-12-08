@@ -1,5 +1,6 @@
 package com.sparta.post.dto;
 
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,7 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseDto {
 
+    @Column(nullable = false)
     private String result;
+    @Column(nullable = false)
     private String message;
 
 

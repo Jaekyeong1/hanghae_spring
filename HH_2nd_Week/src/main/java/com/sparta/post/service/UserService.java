@@ -8,9 +8,9 @@ import com.sparta.post.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {

@@ -1,5 +1,6 @@
 package com.sparta.post.dto;
 
+import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostResponseDto extends ResponseDto{
 
+    @Column(nullable = false)
     private PostDto postDto;
 
     public PostResponseDto(String result, String message, PostDto postDto) {

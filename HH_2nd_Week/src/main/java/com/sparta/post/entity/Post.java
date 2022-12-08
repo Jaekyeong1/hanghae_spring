@@ -3,10 +3,9 @@ package com.sparta.post.entity;
 
 import com.sparta.post.dto.PostDto;
 import com.sparta.post.dto.PostRequestDto;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 
-public class Post {
+public class Post extends Timestamped{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -54,9 +53,6 @@ public class Post {
         this.username = postDto.getUsername();
         this.title = postDto.getTitle();
         this.contents = postDto.getContents();
-        this.createdAt = postDto.getCreatedAt();
-        this.modifiedAt = postDto.getModifiedAt();
-
 
     }
 

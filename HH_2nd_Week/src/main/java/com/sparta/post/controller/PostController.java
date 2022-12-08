@@ -1,7 +1,9 @@
 package com.sparta.post.controller;
 
-import com.sparta.post.dto.*;
-
+import com.sparta.post.dto.PostDto;
+import com.sparta.post.dto.PostRequestDto;
+import com.sparta.post.dto.PostResponseDto;
+import com.sparta.post.dto.ResponseDto;
 import com.sparta.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,16 +38,16 @@ public class PostController {
 
     //게시글 작성
     @ResponseStatus(value = HttpStatus.OK)
-    @PostMapping("/post")
+    @PostMapping("/posts")
     public PostDto resisterPost(@RequestBody PostRequestDto postRequestDto) {
         return postService.createPost(postRequestDto);
     }
 
     //게시글 수정
-    @PutMapping("/post/{id}")
-    public ResponseEntity<ResponseDto> updatePost(@PathVariable Long id, @RequestBody PostRequestDto postDto) {
+    @PutMapping("/posts/{id}")
+    public ResponseEntity<ResponseDto> updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(postService.updatePost(id, postDto));
+            return ResponseEntity.status(HttpStatus.OK).body(postService.updatePost(id, requestDto));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDto("fail", "게시글이 존재하지 않습니다."));
         }
@@ -53,7 +55,7 @@ public class PostController {
     }
 
     //게시글 삭제
-    @DeleteMapping("/post/{id}")
+    @DeleteMapping("/posts/{id}")
     public ResponseEntity<ResponseDto> deletePost(@PathVariable Long id, @RequestBody PostRequestDto postDto) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(postService.deletePost(id, postDto.getPassword()));
